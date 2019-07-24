@@ -1,20 +1,20 @@
 from configparser import ConfigParser
 parser = ConfigParser()
-CONF='/Users/edmelnik/Library/CloudStorage/iCloud Drive/Documents/GitHub/inserttest/inserttest.config' 
+CONF='/home/pi/Desktop/inserttest-master/inserttest.config' 
 
 parser.read(CONF)
 
 print("PSNERGY BREAK TEST")
 print("PSNERGY INSERT TESTING")
-print("Select the default insert size")
-print("1. 5 inches")
-print("2. 5.5 inches")
-print("3. 7 inches")
+##print("Select the default insert size")
+##print("1. 5 inches")
+##print("2. 5.5 inches")
+##print("3. 7 inches")
 print("Enter Insert Number")
 g = input()
 while True:
     
-    if int(g) != 0:
+    if int(g) != 0 and int(g) != '':
             insert = str(g)
             parser.read(CONF)
             parser['inserttest_config']['insert_number'] = g
@@ -49,20 +49,19 @@ while True:
                 parser['inserttest_config']['ping'] = 'off'
                 parser['inserttest_config']['motor'] = 'on'
                 parser['inserttest_config']['loadcell'] = 'on'
-                
                 with open(CONF, 'w') as updated_conf:
                     parser.write(updated_conf)
-                print('Break left wing')
-                parser['inserttest_config']['insert_section'] = 'left'
-                with open(CONF, 'w') as updated_conf:
-                    parser.write(updated_conf)
-                input('Press enter to continue: ')
                 print('Break right wing')
                 parser['inserttest_config']['insert_section'] = 'right'
                 with open(CONF, 'w') as updated_conf:
                     parser.write(updated_conf)
                 input('Press enter to continue: ')
-                print('break middle')
+                print('Break left wing')
+                parser['inserttest_config']['insert_section'] = 'left'
+                with open(CONF, 'w') as updated_conf:
+                    parser.write(updated_conf)
+                input('Press enter to continue: ')
+                print('Break middle')
                 parser['inserttest_config']['insert_section'] = 'middle'
                 with open(CONF, 'w') as updated_conf:
                     parser.write(updated_conf)
